@@ -11,11 +11,11 @@ func TestStack(t *testing.T) {
 
     got, err := list.pop()
     if err != nil {
-        t.Error("expected 5, got error")
+        t.Error("expected 9, got error")
     }
 
-    if got != 5 {
-        t.Errorf("expected %d, got %d", 5, got)
+    if got != 9 {
+        t.Errorf("expected %d, got %d", 9, got)
     }
 
     if list.length != 2 {
@@ -25,27 +25,27 @@ func TestStack(t *testing.T) {
     list.push(11)
 
     got, _ = list.pop()
+    if got != 11 {
+        t.Errorf("expected %d, got %d", 11, got)
+    }
+
+    got, _ = list.pop()
     if got != 7 {
         t.Errorf("expected %d, got %d", 7, got)
     }
 
-    got, _ = list.pop()
-    if got != 9 {
-        t.Errorf("expected %d, got %d", 9, got)
-    }
-
     got, err = list.peek()
     if err != nil {
-        t.Error("expected 11, got error")
+        t.Error("expected 5, got error")
     }
 
-    if got != 11 {
-        t.Errorf("expected %d, got %d", 11, got)
+    if got != 5 {
+        t.Errorf("expected %d, got %d", 5, got)
     }
 
     got, _ = list.pop()
-    if got != 11 {
-        t.Errorf("expected %d, got %d", 11, got)
+    if got != 5 {
+        t.Errorf("expected %d, got %d", 5, got)
     }
 
     _, err = list.pop()
