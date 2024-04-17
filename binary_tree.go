@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type BinaryNode[T comparable] struct {
 	value T
 	right *BinaryNode[T]
@@ -41,4 +43,35 @@ func (node *BinaryNode[T]) inOrderWalk(path *[]T) {
 	*path = append(*path, node.value)
 
 	node.right.inOrderWalk(path)
+}
+
+func (head *BinaryNode[T]) BreadthFirstSearch(needle T) (bool, error) {
+
+	found := false
+
+	queue := Queue[*BinaryNode[T]]{}
+	queue.enqueue(head)
+
+	for queue.length > 0 {
+		node, err := queue.deque()
+		if err != nil {
+			return false, err
+		}
+
+		if node.value == needle {
+			found = true
+			break
+		}
+
+		if node.left != nil {
+			queue.enqueue(node.left)
+		}
+
+		if node.right != nil {
+			queue.enqueue(node.right)
+		}
+
+	}
+
+	return found, nil
 }

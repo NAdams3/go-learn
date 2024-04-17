@@ -62,3 +62,23 @@ func TestBinaryTreeInOrderSearch(t *testing.T) {
 		t.Errorf("expected %v, got %v", expected, got)
 	}
 }
+
+func TestBinaryTreeBreadthFirstSearch(t *testing.T) {
+	expected := true
+	got, _ := testBinaryNode.BreadthFirstSearch(30)
+	if got != expected {
+		t.Errorf("expected %v, got %v", expected, got)
+	}
+
+	expected = false
+	got, _ = testBinaryNode.BreadthFirstSearch(54)
+	if got != expected {
+		t.Errorf("expected %v, got %v", expected, got)
+	}
+
+	_, err := testBinaryNode.BreadthFirstSearch(54)
+	if err != nil {
+		t.Errorf("expected nil, got %v", err)
+	}
+
+}
