@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 )
 
@@ -22,12 +21,10 @@ func GraphMatrixBreadthFirstSearch(matrix [][]int, source, needle int) []int {
 					paths = append(paths, []int{source, i})
 					counts = append(counts, conn)
 				} else {
+
 					for c, path := range paths {
-						if n >= len(path) {
-							continue
-						}
-						if path[n] == vertex {
-							path = append(path, i)
+						if path[len(path)-1] == vertex {
+							paths[c] = append(paths[c], i)
 							counts[c] += conn
 						}
 
@@ -37,7 +34,23 @@ func GraphMatrixBreadthFirstSearch(matrix [][]int, source, needle int) []int {
 		}
 	}
 
-	fmt.Printf("paths: %v, counts: %v \n", paths, counts)
+	shortestPath := []int{}
+	pathCost := 0
 
-	return []int{}
+	for i, path := range paths {
+		if slices.Contains(path, needle) {
+			if len(shortestPath) == 0 {
+				shortestPath = path
+				pathCost = counts[i]
+			} else {
+				if counts[i] < pathCost {
+					shortestPath = path
+					pathCost = counts[i]
+				}
+			}
+
+		}
+	}
+
+	return shortestPath
 }

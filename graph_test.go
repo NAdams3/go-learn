@@ -23,9 +23,10 @@ func TestBreadthFirstSearchGraphMatrix(t *testing.T) {
 		t.Errorf("expected %v, got %v", expected, got)
 	}
 
+	expected = []int{}
 	got = GraphMatrixBreadthFirstSearch(matrix, 6, 0)
-	if got != nil {
-		t.Errorf("expected nil, got %v", got)
+	if !reflect.DeepEqual(got, expected) {
+		t.Errorf("expected %v, got %v", expected, got)
 	}
 
 }
