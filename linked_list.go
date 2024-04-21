@@ -72,6 +72,7 @@ func (list *LinkedList[T]) remove(val T) (T, error) {
 }
 
 func (list *LinkedList[T]) removeAt(index int) (T, error) {
+
 	current, err := list.getElement(index)
 	if err != nil {
 		return *new(T), err
