@@ -48,17 +48,9 @@ func (c *LRUCache[V]) get(key string) (V, error) {
 
 func (c *LRUCache[V]) update(key string, value V) {
 
-	index := c.hash(key)
-	keyValue := KeyValue[V]{
-		key:   key,
-		value: value,
-	}
-
 	if len(c.data) == 0 {
-		c.data = make([][]KeyValue[V], 3)
 	}
 
-	c.data[index] = append(c.data[index], keyValue)
 	c.queue.enqueue(key)
 
 }
